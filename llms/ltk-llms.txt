@@ -1,0 +1,25 @@
+# LTK (rewardStyle)
+
+> LTK is a creator commerce platform that connects shoppers, content creators, and brands, driving more than $6B in annual sales. Founded in 2011 by Amber and Baxter Box (originally as rewardStyle), LTK operates a shoppable-content network spanning 44M+ monthly shoppers, 1M+ brands, and 8,000+ integrated retailers. Its partner/affiliate API is served from the rewardStyle Developer Portal.
+
+## APIs
+- [rewardStyle Developer Portal](https://api.rewardstyle.com/): Registration-gated partner API (OAuth2 client-credentials) for brands and affiliate partners.
+
+## Authentication
+- [OAuth2 token endpoint](https://api.rewardstyle.com/oauth/token): OAuth2 client-authenticated token endpoint (RFC 6749).
+- [authentication profile](authentication/ltk-authentication.yml)
+
+## Security
+- [security.txt](https://shopltk.com/.well-known/security.txt): RFC 9116, security contact security@rewardstyle.com
+- [vulnerability disclosure](security/ltk-vulnerability-disclosure.yml)
+
+## Company
+- [LTK company](https://company.shopltk.com/): Company overview.
+- [Brand platform](https://company.shopltk.com/en/brands): For brands and retailers.
+- [Become a creator](https://company.shopltk.com/en/launchyourltk)
+- [Careers](https://company.shopltk.com/careers)
+- [Contact](https://company.shopltk.com/contact-us)
+
+## Legal
+- [Terms of Service](https://company.shopltk.com/ltk-terms-of-service)
+- [Privacy Policy](https://company.shopltk.com/ltk-privacy-policy)

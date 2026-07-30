@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://api.rewardstyle.com/
+docs: https://api.rewardstyle.com/
+summary:
+  types: [oauth2]
+  oauth2_flows: [clientCredentials]
+  registration: gated
+schemes:
+  - name: OAuth2
+    type: oauth2
+    flows:
+      - flow: clientCredentials
+        tokenUrl: https://api.rewardstyle.com/oauth/token
+        note: >-
+          Live token endpoint returns RFC 6749 errors (POST with no
+          credentials -> HTTP 400 {"error":"invalid_client"}), confirming an
+          OAuth2 client-authenticated token endpoint. Client credentials are
+          issued through the gated rewardStyle Developer Portal
+          (registration at https://api.rewardstyle.com/register).
+    sources: [https://api.rewardstyle.com/oauth/token]
+notes: >-
+  The rewardStyle Developer Portal (api.rewardstyle.com) is registration-gated;
+  the full API reference, OpenAPI/Swagger spec, and scope list are only visible
+  to approved partners after login, so scopes could not be enumerated publicly.
+  The public, verifiable surface is the OAuth2 token endpoint behavior above.

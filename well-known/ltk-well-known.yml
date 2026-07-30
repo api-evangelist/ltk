@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://shopltk.com/.well-known/security.txt
+host: https://shopltk.com
+documents:
+  - path: /.well-known/security.txt          # RFC 9116
+    status: 200
+    file: ltk-security.txt
+  - path: /.well-known/openid-configuration   # OIDC discovery
+    status: 307                               # redirects to www homepage, not a real OIDC doc
+  - path: /.well-known/oauth-authorization-server  # RFC 8414
+    status: 307
+  - path: /.well-known/api-catalog             # RFC 9727
+    status: 307
+  - path: /.well-known/ai-plugin.json
+    status: 307
+notes: >-
+  Only /.well-known/security.txt returns a real document; the other well-known
+  paths 307-redirect to the marketing homepage (no OIDC / OAuth AS / api-catalog
+  metadata published). The security.txt lists a security contact under the
+  legacy rewardstyle.com domain (LTK was formerly rewardStyle).
