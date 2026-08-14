@@ -23,7 +23,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://company.shopltk.com/
+image: https://company.shopltk.com/hubfs/LinkedInLTKlogo1-1.jpg
 url: https://raw.githubusercontent.com/api-evangelist/ltk/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -33,12 +33,31 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 x-enrichment:
-  date: '2026-07-20'
-  status: enriched
-  artifacts_added: 6
+  date: '2026-08-13'
+  status: minimal
+  artifacts_added: 7
   pass: local-v1
+x-coverage:
+  state: gated
+  reason: partner-login
+  detail: >-
+    The rewardStyle Developer Portal at api.rewardstyle.com answers HTTP 200 with
+    a sign-in form for every documentation path (/docs, /documentation, /openapi,
+    /swagger, /api/v1), so the API reference and specification are only visible
+    after partner registration; the OAuth2 token endpoint is the only part of the
+    API that can be verified anonymously.
+  evidence:
+  - url: https://api.rewardstyle.com/docs
+    status: 200
+  - url: https://api.rewardstyle.com/oauth/token
+    status: 400
+  - url: https://api.rewardstyle.com/.well-known/openid-configuration
+    status: 404
+  - url: https://github.com/rewardStyle/api.rewardstyle.com
+    status: 404
+  checked: '2026-08-13'
 tags:
 - Company
 - Consumer
@@ -96,3 +115,17 @@ common:
   url: https://shopltk.com/.well-known/security.txt
 - type: LLMsTxt
   url: llms/ltk-llms.txt
+- type: GitHubOrganization
+  url: https://github.com/rewardStyle
+- type: Blog
+  url: https://company.shopltk.com/us/creatorsuccess/creator-blog
+- type: Packages
+  url: packages/ltk-packages.yml
+- type: Conformance
+  url: conformance/ltk-conformance.yml
+- type: Lifecycle
+  url: lifecycle/ltk-lifecycle.yml
+- type: Conventions
+  url: conventions/ltk-conventions.yml
+- type: Plans
+  url: plans/ltk-plans-pricing.yml
