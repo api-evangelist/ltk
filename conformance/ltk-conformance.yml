@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live probes of https://api.rewardstyle.com (OAuth2 token endpoint and
+  /.well-known/*), https://shopltk.com, https://creator.shopltk.com,
+  https://auth-creator.shopltk.com and https://company.shopltk.com.
+scope: >-
+  Cross-cutting standards only. The rewardStyle partner API reference is
+  registration-gated, so no per-operation conformance (pagination, filtering,
+  media types) can be asserted from the outside.
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    POST https://api.rewardstyle.com/oauth/token with
+    grant_type=client_credentials and no client authentication returns
+    HTTP 400, Content-Type application/json, body {"error":"invalid_client"} —
+    the RFC 6749 §5.2 error response for an unauthenticated client. Probed
+    2026-08-13. Confirms a real OAuth2 client-credentials token endpoint.
+- id: oauth2-client-credentials
+  name: OAuth 2.0 client credentials grant
+  conforms: true
+  evidence: >-
+    Same probe. The endpoint accepts and evaluates grant_type=client_credentials
+    rather than rejecting the grant type as unsupported.
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: false
+  evidence: >-
+    https://api.rewardstyle.com/.well-known/oauth-authorization-server returns
+    HTTP 404 (nginx). auth-creator.shopltk.com returns HTTP 302 to a login for
+    the same path. No authorization-server metadata document is published.
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: >-
+    https://api.rewardstyle.com/.well-known/openid-configuration returns
+    HTTP 404; https://shopltk.com/.well-known/openid-configuration 307-redirects
+    to the marketing homepage. No OIDC discovery document exists.
+- id: rfc9116
+  name: security.txt
+  conforms: true
+  evidence: >-
+    https://shopltk.com/.well-known/security.txt and
+    https://creator.shopltk.com/.well-known/security.txt both return HTTP 200,
+    Content-Type text/plain, with Contact and Expires fields. Saved verbatim at
+    well-known/ltk-security.txt.
+- id: rfc9457
+  name: Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    The only publicly observable error response (the OAuth2 token endpoint) uses
+    the RFC 6749 {"error":"..."} envelope with Content-Type application/json,
+    not application/problem+json.
+- id: rfc9727
+  name: api-catalog well-known URI
+  conforms: false
+  evidence: >-
+    /.well-known/api-catalog returns 404 on api.rewardstyle.com and 307 to the
+    marketing homepage on shopltk.com.
+- id: tls
+  name: TLS 1.3 on all public API hosts
+  conforms: true
+  evidence: >-
+    api.rewardstyle.com and company.shopltk.com both negotiate TLSv1.3 — see
+    security/ltk-domain-security.yml (probed 2026-08-13).
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: partial
+  evidence: >-
+    company.shopltk.com sends Strict-Transport-Security with max-age=31536000;
+    the API host api.rewardstyle.com sends no HSTS header.
+certifications: []
+compliance_programs: []
+notes: >-
+  No certification or compliance program (SOC 2, ISO 27001, PCI DSS, HIPAA,
+  FedRAMP) is published on any LTK public surface — the 427-URL sitemap at
+  company.shopltk.com contains no security, trust, or compliance page, and
+  trust.shopltk.com does not resolve. No `Compliance` pointer is therefore
+  wired into apis.yml.

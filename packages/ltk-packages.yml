@@ -1,0 +1,68 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://registry.npmjs.org/-/v1/search?text=%40rscollabs — the @rscollabs npm
+  scope is maintained by dev@rewardstyle.com (rewardStyle is LTK's former name
+  and is still the engineering domain). PyPI, RubyGems, crates.io, NuGet, Maven
+  Central and pkg.go.dev were also searched for a first-party LTK/rewardStyle
+  client library; none exists.
+sdk_count: 0
+client_sdk_published: false
+packages:
+- language: javascript
+  registry: npm
+  name: '@rscollabs/rs-cypress-api-plugin'
+  url: https://www.npmjs.com/package/@rscollabs/rs-cypress-api-plugin
+  install: npm install @rscollabs/rs-cypress-api-plugin
+  official: true
+  client_sdk: false
+  version: 0.3.68
+  published: '2024-08-20'
+  note: >-
+    First-party internal tooling, not a client library for the rewardStyle
+    partner API. Package author is slav.kurochkin@rewardstyle.com and the
+    description reads "A plugin to support api calls used by LTK Cypress
+    testing frameworks". 88 versions published; the most recent
+    (0.3.68) is dated 2024-08-20, roughly two years stale as of this pass.
+- language: javascript
+  registry: npm
+  name: '@rscollabs/eslint-config'
+  url: https://www.npmjs.com/package/@rscollabs/eslint-config
+  install: npm install --save-dev @rscollabs/eslint-config
+  official: true
+  client_sdk: false
+  version: 23.0.4
+  published: '2026-07-17'
+  note: >-
+    First-party shared lint configuration (npm maintainer dev@rewardstyle.com).
+    Internal engineering tooling, not an API client. Actively maintained —
+    latest release 2026-07-17.
+negative_results:
+- registry: pypi
+  query: ltk
+  finding: >-
+    https://pypi.org/project/ltk/ is the Lingotek Filesystem Connector
+    (author integrations@lingotek.com, repo Lingotek/filesystem-connector).
+    Name collision only — NOT an LTK package. Recorded here so a future pass
+    does not mistake it for a first-party SDK.
+- registry: pypi
+  query: rewardstyle, shopltk, liketoknowit
+  finding: HTTP 404 — no package published.
+- registry: npm
+  query: rewardstyle, shopltk, liketoknowit
+  finding: zero results.
+- registry: github
+  query: github.com/rewardStyle (the company's public org, 72 repos)
+  finding: >-
+    Only five non-fork repositories, all internal engineering utilities
+    (py-hub, py-google-api, py-envdefault-argparse, Logs, ltkanalytics-ios).
+    No API client library and no specification. The historical example-code
+    repository github.com/rewardStyle/api.rewardstyle.com — still present in
+    search-engine indexes — now returns HTTP 404 and has been removed.
+notes: >-
+  LTK publishes no client SDK for its partner/affiliate API in any public
+  package registry. The two first-party npm packages found are internal
+  engineering tooling published under the @rscollabs scope, and are recorded
+  here as evidence of the company's public package footprint rather than as
+  an integration path. Because no official client library exists, this
+  artifact does NOT carry an `SDKs` pointer in apis.yml.

@@ -1,25 +1,45 @@
 # LTK (rewardStyle)
 
-> LTK is a creator commerce platform that connects shoppers, content creators, and brands, driving more than $6B in annual sales. Founded in 2011 by Amber and Baxter Box (originally as rewardStyle), LTK operates a shoppable-content network spanning 44M+ monthly shoppers, 1M+ brands, and 8,000+ integrated retailers. Its partner/affiliate API is served from the rewardStyle Developer Portal.
+> LTK is a creator commerce platform that connects shoppers, content creators, and brands, driving more than $6B in annual sales. Founded in 2011 by Amber and Baxter Box (originally as rewardStyle), LTK operates a shoppable-content network spanning 44M+ monthly shoppers, 1M+ brands, and 8,000+ integrated retailers. Its partner/affiliate API is served from the rewardStyle Developer Portal and is gated behind partner registration — the OAuth2 token endpoint is the only publicly verifiable part of the API surface.
 
 ## APIs
-- [rewardStyle Developer Portal](https://api.rewardstyle.com/): Registration-gated partner API (OAuth2 client-credentials) for brands and affiliate partners.
+- [rewardStyle Developer Portal](https://api.rewardstyle.com/): Registration-gated partner API (OAuth2 client-credentials) for brands and affiliate partners. The API reference, specification, and scope list are visible only after partner login.
 
 ## Authentication
-- [OAuth2 token endpoint](https://api.rewardstyle.com/oauth/token): OAuth2 client-authenticated token endpoint (RFC 6749).
+- [OAuth2 token endpoint](https://api.rewardstyle.com/oauth/token): OAuth2 client-credentials token endpoint. An unauthenticated POST returns HTTP 400 `{"error":"invalid_client"}` (RFC 6749 §5.2).
+- [OAuth2 authorize endpoint](https://api.rewardstyle.com/oauth/authorize): Presents a rewardStyle sign-in form.
+- [Partner registration](https://api.rewardstyle.com/register): Where API credentials are requested.
 - [authentication profile](authentication/ltk-authentication.yml)
 
-## Security
+## Conventions and limits
+- [API conventions](conventions/ltk-conventions.yml): Observed error envelope (RFC 6749 shape), security headers, and the fields that cannot be determined without partner credentials.
+- [Rate limits](rate-limits/ltk-rate-limits.yml): None published; no rate-limit headers observed.
+- [Lifecycle](lifecycle/ltk-lifecycle.yml): No status page, changelog, deprecation policy, or SLA is published.
+- [Plans and pricing](plans/ltk-plans-pricing.yml): No published plans — creator side is commission-based, brand side is contact-sales.
+
+## Standards and security
+- [Conformance profile](conformance/ltk-conformance.yml): OAuth 2.0 client credentials confirmed by probe; no OIDC discovery, no RFC 8414 metadata, no RFC 9457 problem details.
 - [security.txt](https://shopltk.com/.well-known/security.txt): RFC 9116, security contact security@rewardstyle.com
+- [well-known index](well-known/ltk-well-known.yml)
 - [vulnerability disclosure](security/ltk-vulnerability-disclosure.yml)
+- [domain security](security/ltk-domain-security.yml): TLS 1.3 on all hosts; HSTS on the marketing site but not on the API host.
+
+## Code and packages
+- [GitHub organization](https://github.com/rewardStyle): LTK's public engineering org. No client SDK or specification is published there.
+- [package inventory](packages/ltk-packages.yml): Two first-party npm packages under the `@rscollabs` scope — internal engineering tooling, not API clients. LTK publishes no client SDK in any registry.
 
 ## Company
 - [LTK company](https://company.shopltk.com/): Company overview.
 - [Brand platform](https://company.shopltk.com/en/brands): For brands and retailers.
+- [Agencies and affiliates](https://company.shopltk.com/agencies-and-affiliates)
 - [Become a creator](https://company.shopltk.com/en/launchyourltk)
+- [Creator blog](https://company.shopltk.com/us/creatorsuccess/creator-blog)
+- [Press](https://company.shopltk.com/en/press)
+- [Help center](https://help.rewardstyle.com/hc/en-us): Creator help center; redirects anonymous visitors to a creator login.
 - [Careers](https://company.shopltk.com/careers)
 - [Contact](https://company.shopltk.com/contact-us)
 
 ## Legal
 - [Terms of Service](https://company.shopltk.com/ltk-terms-of-service)
 - [Privacy Policy](https://company.shopltk.com/ltk-privacy-policy)
+- [Cookie Policy](https://company.shopltk.com/cookie-policy)

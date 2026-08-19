@@ -1,0 +1,27 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://company.shopltk.com/sitemap.xml (427 URLs, walked in full) and
+  https://api.rewardstyle.com/ — searched for a pricing, plans, or tier page.
+plan_count: 0
+plans: []
+evidence:
+- url: https://company.shopltk.com/sitemap.xml
+  status: 200
+  finding: >-
+    No /pricing, /plans, or /tiers path among the 427 indexed URLs. Brand and
+    agency engagement is routed through /brands and /agencies-and-affiliates,
+    both of which end in a contact form.
+- url: https://api.rewardstyle.com/
+  status: 200
+  finding: >-
+    The rewardStyle Developer Portal is a sign-in / apply page only. No pricing,
+    quota, or plan information is shown to an anonymous visitor.
+- url: https://company.shopltk.com/contact-us
+  status: 200
+  finding: Contact form — the commercial entry point for brands and partners.
+notes: >-
+  LTK publishes no plans or pricing of any kind. The creator side of the network
+  is commission-based (LTK takes a share of attributed sales) and the brand and
+  agency side is sold through a contact-sales motion, so there is nothing
+  structured to record. plan_count is an honest zero, not an omission.

@@ -1,0 +1,31 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live anonymous probe of https://api.rewardstyle.com/oauth/token plus a search
+  of every publicly reachable LTK page for a documented rate limit.
+limit_count: 0
+limits: []
+response_headers: []
+exhaustion_status_code: null
+evidence:
+- url: https://api.rewardstyle.com/oauth/token
+  status: 400
+  finding: >-
+    Response headers on POST with grant_type=client_credentials carried no
+    X-RateLimit-*, RateLimit-*, or Retry-After header. Present headers were
+    content-type, cache-control, content-security-policy, server, x-powered-by,
+    set-cookie, expires, pragma, x-cache, via, x-amz-cf-pop, x-amz-cf-id.
+- url: https://company.shopltk.com/sitemap.xml
+  status: 200
+  finding: No developer, API, or rate-limit documentation page among 427 URLs.
+- url: https://api.rewardstyle.com/docs
+  status: 200
+  finding: >-
+    Returns the portal login shell, not documentation. Any published limits sit
+    behind partner registration.
+notes: >-
+  No rate limits are published and none are signaled on the one anonymously
+  reachable endpoint. This is an honest zero recorded from a real probe, not a
+  missing measurement — and because nothing is documented, no `RateLimits`
+  pointer is wired into apis.yml. If LTK opens the partner reference, this is
+  the first artifact to re-run.

@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://shopltk.com/.well-known/security.txt
 host: https://shopltk.com
@@ -14,8 +14,78 @@ documents:
     status: 307
   - path: /.well-known/ai-plugin.json
     status: 307
+additional_hosts:
+  - host: https://api.rewardstyle.com          # the API host
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+    note: >-
+      Clean nginx 404s — the API host publishes no discovery surface at all,
+      including no RFC 8414 metadata for its own OAuth2 token endpoint.
+  - host: https://creator.shopltk.com          # creator web app
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: ltk-security.txt                 # byte-identical to the shopltk.com copy
+      - path: /.well-known/openid-configuration
+        status: 200
+        soft_404: true
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        soft_404: true
+      - path: /.well-known/agent-card.json
+        status: 200
+        soft_404: true
+      - path: /.well-known/agent.json
+        status: 200
+        soft_404: true
+      - path: /.well-known/api-catalog
+        status: 200
+        soft_404: true
+    note: >-
+      SPA catch-all. Every path except security.txt returns HTTP 200 with the
+      same 2,392-byte React index.html shell. These are soft 404s and were
+      NOT counted as documents — see the soft-404 rule.
+  - host: https://company.shopltk.com          # HubSpot marketing site
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://auth-creator.shopltk.com     # creator identity host
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 302
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+      - path: /.well-known/oauth-protected-resource
+        status: 302
+    note: >-
+      Blanket 302 to a login for every path, including the root. No anonymous
+      identity metadata is exposed.
 notes: >-
-  Only /.well-known/security.txt returns a real document; the other well-known
-  paths 307-redirect to the marketing homepage (no OIDC / OAuth AS / api-catalog
-  metadata published). The security.txt lists a security contact under the
-  legacy rewardstyle.com domain (LTK was formerly rewardStyle).
+  Re-probed 2026-08-13 across every LTK/rewardStyle host. Only
+  /.well-known/security.txt returns a real document (served identically from
+  shopltk.com and creator.shopltk.com). No OIDC discovery, no RFC 8414
+  authorization-server metadata, no api-catalog, no ai-plugin, and no A2A agent
+  card exists anywhere on the estate. The security.txt lists a security contact
+  under the legacy rewardstyle.com domain (LTK was formerly rewardStyle). The
+  `WellKnown` pointer in apis.yml is justified by the single genuine 200
+  document; the soft-200 SPA responses on creator.shopltk.com are recorded as
+  misses, not hits.

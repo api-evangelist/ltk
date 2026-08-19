@@ -1,0 +1,46 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://company.shopltk.com/sitemap.xml (427 URLs, walked in full),
+  https://api.rewardstyle.com/ and DNS probes of the usual status-page hosts.
+versioning:
+  documented: false
+  scheme: unknown
+  note: >-
+    No public versioning policy. The API reference that would carry one is
+    behind partner registration at api.rewardstyle.com.
+status_page:
+  present: false
+  url: null
+  probes:
+  - url: https://status.shopltk.com/
+    status: 0
+    result: Cloudflare error 1034 — host does not resolve.
+  - url: https://status.rewardstyle.com/
+    status: 0
+    result: Cloudflare error 1034 — host does not resolve.
+  - url: https://company.shopltk.com/sitemap.xml
+    status: 200
+    result: No status, uptime, or incident page among 427 indexed URLs.
+deprecation_policy:
+  present: false
+  sunset_header_observed: false
+  deprecation_header_observed: false
+  note: >-
+    RFC 8594 Sunset / Deprecation headers were not present on any anonymously
+    reachable response from api.rewardstyle.com, and no deprecation policy page
+    is published.
+sla:
+  published: false
+support_policy:
+  published: false
+  note: >-
+    General company support runs through https://company.shopltk.com/contact-us
+    and the creator help center at https://help.rewardstyle.com/hc/en-us (which
+    302-redirects anonymous visitors to a creator login).
+deprecated_operations: []
+notes: >-
+  No operational-transparency surface is published for the rewardStyle partner
+  API: no status page, no changelog, no deprecation policy, no SLA. Because
+  none of these exist, this artifact carries only a `Lifecycle` pointer — no
+  `StatusPage` and no `Deprecation` pointer is wired into apis.yml.

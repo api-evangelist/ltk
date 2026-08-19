@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: probed
+status: none
+source: >-
+  Live probes of every LTK / rewardStyle host plus a search of the official
+  Model Context Protocol registry (registry.modelcontextprotocol.io).
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+tools: []
+tool_count: 0
+probes:
+- url: https://api.rewardstyle.com/mcp
+  method: POST tools/list
+  status: 200
+  result: >-
+    HTML — the rewardStyle Developer Portal login shell. The portal answers 200
+    with the same login page for every unknown path, so this is a catch-all,
+    not an MCP endpoint.
+- url: https://api.rewardstyle.com/sse
+  method: POST tools/list
+  status: 200
+  result: HTML login shell (same catch-all).
+- url: https://creator.shopltk.com/mcp
+  method: POST tools/list
+  status: 405
+  result: S3 MethodNotAllowed XML — static site origin, no MCP server.
+- url: https://company.shopltk.com/mcp
+  method: POST tools/list
+  status: 403
+  result: '"Request Forbidden" — HubSpot CMS, no MCP server.'
+- url: https://mcp.rewardstyle.com/mcp
+  method: DNS
+  status: 0
+  result: NXDOMAIN — host does not exist.
+- url: https://registry.modelcontextprotocol.io/v0/servers?search=rewardstyle
+  method: GET
+  status: 200
+  result: '{"servers":[],"metadata":{"count":0}} — no registered server.'
+- url: https://registry.modelcontextprotocol.io/v0/servers?search=ltk
+  method: GET
+  status: 200
+  result: >-
+    Results returned, none belonging to LTK / shopltk.com / rewardstyle.com
+    (substring matches on unrelated vendors only).
+notes: >-
+  LTK ships no MCP server — neither a hosted remote endpoint nor a local stdio
+  package. No candidate tool list could be derived either, because the company
+  publishes no OpenAPI to derive operations from (the rewardStyle API reference
+  is behind partner registration). This file records a probed absence; no
+  `MCPServer` pointer is wired into apis.yml, because none exists.

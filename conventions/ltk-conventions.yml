@@ -1,0 +1,71 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live anonymous probes of https://api.rewardstyle.com (root, /docs, /register,
+  /oauth/authorize, /oauth/token). The full API reference is behind partner
+  registration, so only externally observable conventions are recorded.
+authentication:
+  style: oauth2-client-credentials
+  token_endpoint: https://api.rewardstyle.com/oauth/token
+  authorize_endpoint: https://api.rewardstyle.com/oauth/authorize
+  registration: gated
+  detail: authentication/ltk-authentication.yml
+error_envelope:
+  format: rfc6749
+  shape: '{"error": "<error_code>"}'
+  content_type: application/json
+  problem_json: false
+  observed:
+  - request: POST /oauth/token (grant_type=client_credentials, no client auth)
+    status: 400
+    body: '{"error":"invalid_client"}'
+    probed: '2026-08-13'
+  note: >-
+    Only the token endpoint is anonymously observable. Whether the resource
+    API reuses this envelope or a different one cannot be determined without
+    partner credentials.
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    Not determinable. No idempotency header is documented on any public page and
+    the API reference is gated. NOT asserted as supported — no `Idempotency`
+    pointer is wired into apis.yml.
+pagination:
+  style: unknown
+  note: Reference gated; no pagination parameters publicly documented.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_id_tracing:
+  application_header: null
+  observed_headers:
+  - x-amz-cf-id
+  - x-amz-cf-pop
+  note: >-
+    The only correlation identifiers on anonymous responses are CloudFront CDN
+    headers, which are infrastructure-provided and not an application-level
+    request id an integrator can quote in a support ticket.
+versioning:
+  style: unknown
+  note: No version segment is visible on any anonymously reachable path.
+rate_limit_signaling:
+  headers_observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After headers were present on the
+    token-endpoint response. See rate-limits/ltk-rate-limits.yml.
+security_headers_observed:
+  content_security_policy: true
+  strict_transport_security: false
+  cache_control: no-store
+  cookie_flags: Secure; HttpOnly; SameSite=Strict
+cross_links:
+  authentication: authentication/ltk-authentication.yml
+  conformance: conformance/ltk-conformance.yml
+  lifecycle: lifecycle/ltk-lifecycle.yml
+  rate_limits: rate-limits/ltk-rate-limits.yml
+notes: >-
+  A deliberately thin conventions profile. Everything recorded here was observed
+  on a live anonymous request; every field that would require reading the gated
+  API reference is left explicitly `unknown` rather than guessed.
