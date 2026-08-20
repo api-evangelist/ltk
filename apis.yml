@@ -62,6 +62,15 @@ tags:
 - Company
 - Consumer
 - Creator Commerce
+- Affiliates
+- E-Commerce
+- Influencer Marketing
+- Retail
+- Shopping
+tags_raw:
+- Company
+- Consumer
+- Creator Commerce
 - Affiliate
 - E-Commerce
 - Influencer Marketing
@@ -78,6 +87,9 @@ apis:
   humanURL: https://api.rewardstyle.com/
   baseURL: https://api.rewardstyle.com
   tags:
+  - Affiliates
+  - Creator Commerce
+  tags_raw:
   - Affiliate
   - Creator Commerce
   properties:
