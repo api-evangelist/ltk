@@ -11,6 +11,17 @@ description: >-
   api.rewardstyle.com, secured with OAuth2 and gated behind partner
   registration. This profile enriches the LTK company record with its
   verifiable public developer, security, and identity surface.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
