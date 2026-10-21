@@ -1,16 +1,13 @@
 aid: ltk
+
 name: LTK
-description: >-
-  LTK (formerly rewardStyle / LIKEtoKNOW.it) is a creator commerce platform that
-  connects shoppers, content creators, and brands, driving more than $6B in
-  annual sales. Founded in 2011 by Amber and Baxter Box and headquartered in
-  Dallas, LTK operates a shoppable-content network spanning 44M+ monthly
-  shoppers, 1M+ brands, and 8,000+ integrated retailers, and has generated
-  nearly 1,100 creator millionaires. For brand and affiliate partners, LTK
-  exposes a partner API through the rewardStyle Developer Portal at
-  api.rewardstyle.com, secured with OAuth2 and gated behind partner
-  registration. This profile enriches the LTK company record with its
-  verifiable public developer, security, and identity surface.
+
+description: LTK (formerly rewardStyle / LIKEtoKNOW.it) is a creator commerce platform that connects shoppers, content creators, and brands, driving
+  more than $6B in annual sales. Founded in 2011 by Amber and Baxter Box and headquartered in Dallas, LTK operates a shoppable-content network
+  spanning 44M+ monthly shoppers, 1M+ brands, and 8,000+ integrated retailers, and has generated nearly 1,100 creator millionaires. For brand
+  and affiliate partners, LTK exposes a partner API through the rewardStyle Developer Portal at api.rewardstyle.com, secured with OAuth2 and gated
+  behind partner registration. This profile enriches the LTK company record with its verifiable public developer, security, and identity surface.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -22,6 +19,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -34,41 +32,51 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://company.shopltk.com/hubfs/LinkedInLTKlogo1-1.jpg
+
 url: https://raw.githubusercontent.com/api-evangelist/ltk/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - softbank-vision-fund
-x-tier: stub
-x-tier-reason: portfolio-lead
+
+x-tier: profiled
+
+x-tier-reason: enrichment pass 2026-10-20 (local-v5; was portfolio-lead)
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-08-13'
+
 x-enrichment:
-  date: '2026-08-13'
+  date: '2026-10-20'
   status: minimal
-  artifacts_added: 7
-  pass: local-v1
+  artifacts_added: 0
+  pass: local-v5
+
 x-coverage:
   state: gated
   reason: partner-login
-  detail: >-
-    The rewardStyle Developer Portal at api.rewardstyle.com answers HTTP 200 with
-    a sign-in form for every documentation path (/docs, /documentation, /openapi,
-    /swagger, /api/v1), so the API reference and specification are only visible
-    after partner registration; the OAuth2 token endpoint is the only part of the
-    API that can be verified anonymously.
+  detail: The rewardStyle Developer Portal at api.rewardstyle.com answers HTTP 200 with a sign-in form for every documentation path (/docs, /documentation,
+    /openapi, /swagger, /api/v1), so the API reference and specification are only visible after partner registration; the OAuth2 token endpoint
+    is the only part of the API that can be verified anonymously.
   evidence:
-  - url: https://api.rewardstyle.com/docs
+  - url: https://api.rewardstyle.com/
     status: 200
-  - url: https://api.rewardstyle.com/oauth/token
-    status: 400
-  - url: https://api.rewardstyle.com/.well-known/openid-configuration
+  - url: https://api.rewardstyle.com/openapi.json
     status: 404
-  - url: https://github.com/rewardStyle/api.rewardstyle.com
+  - url: https://api.rewardstyle.com/swagger.json
     status: 404
-  checked: '2026-08-13'
+  - url: https://api.rewardstyle.com/llms.txt
+    status: 404
+  checked: '2026-10-20'
+
 tags:
 - Company
 - Consumer
@@ -78,6 +86,7 @@ tags:
 - Influencer Marketing
 - Retail
 - Shopping
+
 tags_raw:
 - Company
 - Consumer
@@ -87,33 +96,26 @@ tags_raw:
 - Influencer Marketing
 - Retail
 - Shopping
-apis:
-- name: rewardStyle Developer Portal
-  description: >-
-    LTK's partner/affiliate API served from the rewardStyle Developer Portal,
-    secured with OAuth2 (client-credentials token endpoint at
-    /oauth/token). The full API reference and specification are gated behind
-    partner registration; the public, verifiable surface is the developer
-    portal and OAuth2 token endpoint.
-  humanURL: https://api.rewardstyle.com/
-  baseURL: https://api.rewardstyle.com
-  tags:
-  - Affiliates
-  - Creator Commerce
-  tags_raw:
-  - Affiliate
-  - Creator Commerce
-  properties:
-  - type: Authentication
-    url: authentication/ltk-authentication.yml
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
-- type: RateLimits
-  url: rate-limits/ltk-rate-limits.yml
+- type: Hosts
+  url: hosts/ltk-hosts.yml
+- type: Vendors
+  url: vendors/ltk-vendors.yml
+- type: SDKs
+  url: packages/ltk-packages.yml
+- type: Newsroom
+  url: https://company.shopltk.com/press
+- type: Leadership
+  url: https://company.shopltk.com/zh-cn/influencergrowthservices/team
+- type: GettingStarted
+  url: https://company.shopltk.com/uk/influencergrowthservices/getting-started
 - type: DomainSecurity
   url: security/ltk-domain-security.yml
 - type: Website
@@ -138,19 +140,29 @@ common:
   url: security/ltk-vulnerability-disclosure.yml
 - type: Security
   url: https://shopltk.com/.well-known/security.txt
-- type: LLMsTxt
-  url: llms/ltk-llms.txt
 - type: GitHubOrganization
   url: https://github.com/rewardStyle
 - type: Blog
   url: https://company.shopltk.com/us/creatorsuccess/creator-blog
 - type: Packages
   url: packages/ltk-packages.yml
-- type: Conformance
-  url: conformance/ltk-conformance.yml
 - type: Lifecycle
   url: lifecycle/ltk-lifecycle.yml
-- type: Conventions
-  url: conventions/ltk-conventions.yml
-- type: Plans
-  url: plans/ltk-plans-pricing.yml
+
+apis:
+- name: rewardStyle Developer Portal
+  description: LTK's partner/affiliate API served from the rewardStyle Developer Portal, secured with OAuth2 (client-credentials token endpoint
+    at /oauth/token). The full API reference and specification are gated behind partner registration; the public, verifiable surface is the developer
+    portal and OAuth2 token endpoint.
+  humanURL: https://api.rewardstyle.com/
+  baseURL: https://api.rewardstyle.com
+  tags:
+  - Affiliates
+  - Creator Commerce
+  tags_raw:
+  - Affiliate
+  - Creator Commerce
+  properties:
+  - type: Authentication
+    url: authentication/ltk-authentication.yml
+  aid: ltk:rewardstyle-developer-portal
